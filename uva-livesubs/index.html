@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" ng-app="uHunt">
+<head>
+  <meta charset="utf-8">
+  <title>Live Submissions from UVa Online Judge</title>
+  <link rel="stylesheet" href="uhunt.css"/>
+  <link rel="shortcut icon" href="images/uva-rounded.png" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="js/uhunt-base.js"></script>
+  <script src="js/uhunt-livesubs.js"></script>
+  <script>
+  angular.module('uHunt', [
+    'uHunt.base',
+    'uHunt.livesubs',
+  ])
+
+  .factory('uhunt', function (uhunt_config) {
+    // No configuration.
+    return uhunt_config;
+  })
+  </script>
+</head>
+
+<body bgcolor="#000000">
+  <div uhunt-livesubs></div>
+<p style="color:#ffffff; font-size:12pt">Created by <a class="white" href="http://alltootechnical.tk">Brian Guadalupe</a> in his free time. Thanks to Felix Halim for the <a class="white" href="http://uhunt.felix-halim.net/api">uHunt API</a>.</p>
+</body>
+</html>
+	
