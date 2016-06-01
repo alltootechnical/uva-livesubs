@@ -119,8 +119,36 @@ td.waiting {
     to {background-color: #000066;}
 }
 
+@keyframes flashing_rf {
+    from {background-color: black;}
+    to {background-color: #000066;}
+}
+
+@keyframes flashing_se {
+    from {background-color: black;}
+    to {background-color: #660066;}
+}
+
+@keyframes flashing_cj {
+    from {background-color: black;}
+    to {background-color: #333333;}
+}
+
 .tablebar { background: black; }
 .tablesubar { background: black;}
+
+td.short {
+    width: 50px;
+    text-align: center;
+    /* font-size: 20px */
+}
+
+td.desc {
+    width: 200px;
+    font-stretch: condensed;
+    /* font-size: 15px; */
+    line-height: 100%;
+}
 
 .livesubs a.white     { color: white; text-decoration: none; font-weight: normal; }
 a.white     { color: white; text-decoration: none; font-weight: normal; }

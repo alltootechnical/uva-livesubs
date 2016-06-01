@@ -124,11 +124,11 @@ s(d)).toLowerCase()},
     },
     'verdict_map' : {
        0: { name: "- In queue -",         short_name: "",     color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'animation: flashing 0.3s ease-in-out 0s infinite alternate'}, // OT
-      10: { name: "Submission error",     short_name: "SE",   color: "#000000", desc: "The submission is not successful.", style: 'background-color: #000000'}, // OT
-      15: { name: "Can't be judged",      short_name: "CJ",   color: "#000000", desc: "The judge doesn't have test input and outputs for the selected problem.", style: 'background-color: #000000'}, // OT
+      10: { name: "Submission error",     short_name: "SE",   color: "#660066", desc: "The submission is not successful.", style: 'background-color: #660066; animation: flashing_se 0.3s ease-in-out 0s 1'}, // OT
+      15: { name: "Can't be judged",      short_name: "CJ",   color: "#333333", desc: "The judge doesn't have test input and outputs for the selected problem.", style: 'background-color: #333333; animation: flashing_cj 0.3s ease-in-out 0s 1'}, // OT
       20: { name: "- In queue -",         short_name: "QU",   color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'background-color: #000000'}, // OT
       30: { name: "Compile error",        short_name: "CE",   color: "#AAAA00", desc: "The compiler could not compile your program.", style: 'background-color: #AAAA00; animation: flashing_ce 0.3s ease-in-out 0s 1'},
-      35: { name: "Restricted function",  short_name: "RF",   color: "#000000", desc: "Your program is trying to use a function that we considered harmful to the system.", style: 'background-color: #000000'}, // OT
+      35: { name: "Restricted function",  short_name: "RF",   color: "#660000", desc: "Your program is trying to use a function that we considered harmful to the system.", style: 'background-color: #660000; animation: flashing_rf 0.3s ease-in-out 0s 1'}, // OT
       40: { name: "Runtime error",        short_name: "RE",   color: "#00AAAA", desc: "Your program failed during execution.", style: 'background-color: #00AAAA; animation: flashing_re 0.3s ease-in-out 0s 1'},
       45: { name: "Output limit exceeded",short_name: "OL",   color: "#000066", desc: "Your program tried to write too much information.", style: 'background-color: #000066; animation: flashing_ol 0.3s ease-in-out 0s 1'},
       50: { name: "Time limit exceeded",  short_name: "TLE",  color: "#0000FF", desc: "Your program tried to run during too much time.", style: 'background-color: #0000FF; animation: flashing_tle 0.3s ease-in-out 0s 1'},
