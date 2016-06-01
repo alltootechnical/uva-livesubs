@@ -663,13 +663,15 @@ s(d)).toLowerCase()},
 
 .directive('uhuntProblem', function (uhunt_problems, uhunt) {
   return {
-    template: '<a class="{{classes}}" href="{{link}}" target="_blank">{{number}}&nbsp;</a>',
+    template: '<a class="{{classes}}" href="{{link}}" target="_blank"><span class="updown"><span class="up">Level {{lvl}}</span><br/> {{dacu}} dacu</span>&nbsp;<span style="width: 60px; float: right">{{number}}</span></a>',
     link: function (scope, element, attrs) {
       if (uhunt_problems.ready()) {
         var p = uhunt_problems.pid(attrs.uhuntProblem);
         scope.classes = p ? uhunt.problem_classes(p) : 'nou';
         scope.link = p ? uhunt.problem_link(p.num) : '#';
         scope.number = p ? p.num : ' - ';
+        scope.dacu = p.dacu;
+        scope.lvl = uhunt_problems.level(p.dacu);
       }
     }
   };

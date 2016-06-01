@@ -150,6 +150,20 @@ td.desc {
     line-height: 100%;
 }
 
+.updown {
+    text-align: left;
+    display: block;
+    font-stretch: condensed;
+    font-size: 12px;
+    line-height: 110%;
+    vertical-align: middle;
+    float: left;
+}
+
+.up {
+    font-stretch: normal;
+}
+
 .livesubs a.white     { color: white; text-decoration: none; font-weight: normal; }
 a.white     { color: white; text-decoration: none; font-weight: normal; }
 a.prob      { color: white; }
