@@ -104,7 +104,7 @@ s(d)).toLowerCase()},
     web_url         : 'http://uhunt.felix-halim.net',
     // web_url         : 'http://localhost:8084',
     use_session     : true,
-    max_livesubs    : 100,
+    max_livesubs    : 1000,
     algorithmist    : algorithmist,
     livesub_url     : 'http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=19',
     problem_link    : function (num) { return 'http://uva.onlinejudge.org/external/' + Math.floor(num/100) + '/' + num + '.html'; },
@@ -663,13 +663,15 @@ s(d)).toLowerCase()},
 
 .directive('uhuntProblem', function (uhunt_problems, uhunt) {
   return {
-    template: '<a class="{{classes}}" href="{{link}}" target="_blank">{{number}}&nbsp;</a>',
+    template: '<a class="{{classes}}" href="{{link}}" target="_blank"><span class="updown"><span class="up">Level {{lvl}}</span><br/> {{dacu}} dacu</span>&nbsp;<span style="width: 60px; float: right">{{number}}</span></a>',
     link: function (scope, element, attrs) {
       if (uhunt_problems.ready()) {
         var p = uhunt_problems.pid(attrs.uhuntProblem);
         scope.classes = p ? uhunt.problem_classes(p) : 'nou';
         scope.link = p ? uhunt.problem_link(p.num) : '#';
         scope.number = p ? p.num : ' - ';
+        scope.dacu = p.dacu;
+        scope.lvl = uhunt_problems.level(p.dacu);
       }
     }
   };

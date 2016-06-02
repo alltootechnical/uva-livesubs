@@ -14,15 +14,18 @@
 	  <a class="white" style="cursor:pointer" ng-click="set_limit(40)"> 40 </a> |
 	  <a class="white" style="cursor:pointer" ng-click="set_limit(45)"> 45 </a> |
           <a class="white" style="cursor:pointer" ng-click="set_limit(50)"> 50 </a> |
-          <a class="white" style="cursor:pointer" ng-click="set_limit(100)"> 100 </a>
+          <a class="white" style="cursor:pointer" ng-click="set_limit(100)"> 100 </a> |
+          <a class="white" style="cursor:pointer" ng-click="set_limit(250)"> 250 </a> |
+          <a class="white" style="cursor:pointer" ng-click="set_limit(500)"> 500 </a> |
+          <a class="white" style="cursor:pointer" ng-click="set_limit(1000)"> 1000 </a>
         </span>
-        &nbsp; <a target="_blank" class="white" href="" style="font-stretch:normal"><b>Live Submissions from UVa Online Judge</b></a>
+        &nbsp; <a target="_blank" class="white" href="" style="font-stretch:normal"><b>Live Submissions from UVa Online Judge</b></a>
          <!-- <a class="white" style="cursor:pointer" ng-click="set_show(false)">(hide)</a> -->
       </th>
       <tr class="tablesubar" height="20">
         <th width="45" align="left">&nbsp;  &nbsp;  &nbsp;  #</th>
-        <th width="40" align="left"></th>
-        <th width="{{problem_width+100}}" align="left">&nbsp;Problem Title</th>
+        <th width="115" align="left"></th>
+        <th width="{{problem_width+100}}" align="left">&nbsp;Problem</th>
         <th width="{{username_width}}" align="left">&nbsp;User</th>
         <th width="70" align="center">Verdict</th>
         <th width="60" align="center">Lang</th>
@@ -37,7 +40,7 @@
         <td style="font-stretch:condensed;">&nbsp;{{s.sid}}</td>
         <td align="right" uhunt-problem="{{s.pid}}"></td>
         <td>
-          <span style="float:right; padding-right:5px" uhunt-discuss="{{s.p.num}}"></span>
+         <!--  <span style="float:right; padding-right:5px" uhunt-discuss="{{s.p.num}}"></span> -->
           <span uhunt-problem-title="{{s.pid}}" width="{{problem_width}}"></span>
         </td>
         <td width="{{username_width}}" uhunt-name-uname name="{{s.name}}" uname="{{s.uname}}" uid="{{s.uid}}"></td>
