@@ -164,7 +164,7 @@ td.desc {
     font-stretch: normal;
 }
 
-.livesubs a.white     { color: white; text-decoration: none; font-weight: normal; }
+.livesubs a.white     { color: white; text-decoration: underline; font-weight: normal; }
 a.white     { color: white; text-decoration: none; font-weight: normal; }
 a.prob      { color: white; }
 a.nou       { text-decoration: none; }
