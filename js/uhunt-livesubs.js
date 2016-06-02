@@ -23,7 +23,9 @@ angular.module('uHunt.livesubs', ['uHunt.base'])
       scope.pending_runs = function () {
           var count = 0;
           for (var i = 0; i < scope.limit; i++) {
-              if (scope.live_submissions[i].ver == 0) count++;
+              try {
+                  if (scope.live_submissions[i].ver == 0) count++;
+              } catch(ex) {}
           }
           return count;
       };
