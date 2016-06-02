@@ -1,4 +1,4 @@
-<div ng-init="problem_width=185; username_width=185">
+<div ng-init="problem_width=185; username_width=185; runs_threshold=10">
   <table width="100%" style="display:none; border-collapse:collapse" cellpadding="1" ng-show="show">
     <thead>
       <tr class="tablebar" height="25">
@@ -20,12 +20,15 @@
           <a class="white" style="cursor:pointer" ng-click="set_limit(1000)"> 1000 </a>
         </span>
         &nbsp; <a target="_blank" class="white" href="" style="font-stretch:normal"><b>Live Submissions from UVa Online Judge</b></a>
+        <span style="color:red" ng-if="pending_runs() > 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{pending_runs()}} Pending Run(s)</span>
+        <span style="color:red" ng-if="pending_runs() >= 10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Don't submit your solutions yet!</span>
          <!-- <a class="white" style="cursor:pointer" ng-click="set_show(false)">(hide)</a> -->
       </th>
       <tr class="tablesubar" height="20">
-        <th width="45" align="left">&nbsp;  &nbsp;  &nbsp;  #</th>
-        <th width="115" align="left"></th>
-        <th width="{{problem_width+100}}" align="left">&nbsp;Problem</th>
+        <th width="80" align="left">&nbsp;  &nbsp;  &nbsp;  #</th>
+        <th width="70"></th>
+        <th width="60" align="left"></th>
+        <th width="{{problem_width}}" align="left">&nbsp;Problem</th>
         <th width="{{username_width}}" align="left">&nbsp;User</th>
         <th width="70" align="center">Verdict</th>
         <th width="60" align="center">Lang</th>
@@ -38,6 +41,7 @@
     <tbody style="font-size:11px">
       <tr style="height:18px; {{ver.style}}; color:white; border-top: 5px solid; border-bottom: 5px solid; border-color: black;" ng-repeat="s in live_submissions | limitTo:limit">
         <td style="font-stretch:condensed;">&nbsp;{{s.sid}}</td>
+        <td class="updown"><span class="up">Level {{10-Math.floor(Math.min(10, Math.log(s.p.dacu)))}}</span><br/> {{s.p.dacu}} dacu</td>
         <td align="right" uhunt-problem="{{s.pid}}"></td>
         <td>
          <!--  <span style="float:right; padding-right:5px" uhunt-discuss="{{s.p.num}}"></span> -->
