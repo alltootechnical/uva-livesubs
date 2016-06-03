@@ -54,6 +54,21 @@
   margin-bottom: 2em;
   padding: 0 0 0.5em;
 }
+
+a.opts {
+    cursor:pointer;
+    font-stretch:condensed;
+}
+
+a.opts:hover {
+    border-bottom: 1px solid white;
+}
+
+a.opts:active {
+    background: white;
+    color: black;
+}
+
 .menu:before { content: "["; }
 .menu:after { content: "]"; }
 .menu > li { display: inline; }
@@ -64,8 +79,19 @@ th { font-family: open sans; font-size: 22px; }
 td { font-family: open sans; font-size: 21px; }
 p  { font-family: open sans; font-size: 23px; }
 
+.underln { 
+    color: white;
+    border-bottom: 1px solid white;
+}
+
 td.waiting {
     background: -webkit-linear-gradient(left, orange, orange 49.7%, black 50%, black 100%); background: -moz-linear-gradient(left, orange, orange 49.7%, black 50%, black 100%); background-size: 600% 600%; animation: loading 3s ease-in infinite;/* background-attachment:fixed;*/
+}
+
+.boxes {
+    font-weight:normal; 
+    display:inline; 
+    padding:2px 15px
 }
 
 @keyframes flashing {

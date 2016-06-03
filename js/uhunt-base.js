@@ -90,7 +90,7 @@ s(d)).toLowerCase()},
 
 // uHunt default configurations. It should be overriden to "uhunt" in the main html.
 .factory('uhunt_config', function (uhunt_util, uhunt_create_user) {
-  var delta_time_amt = 0;
+  var delta_time_amt = -60;
 
   var algorithmist = {};
   [ 119, 10058, 10306, 10341, 10672, 11235, 11292, 11450, 11506, 11512, 11517, 11947, 11974 ].forEach(function (num) {
@@ -125,7 +125,7 @@ s(d)).toLowerCase()},
     'verdict_map' : {
        0: { name: "- In queue -",         short_name: "",     color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'animation: flashing 0.3s ease-in-out 0s infinite alternate'}, // OT
       10: { name: "Submission error",     short_name: "SE",   color: "#660066", desc: "The submission is not successful.", style: 'background-color: #660066; animation: flashing_se 0.3s ease-in-out 0s 1'}, // OT
-      15: { name: "No judge available",      short_name: "NA",   color: "#333333", desc: "The judge doesn't have test input and outputs for the selected problem.", style: 'background-color: #333333; animation: flashing_cj 0.3s ease-in-out 0s 1'}, // OT
+      15: { name: "Can't be judged",      short_name: "CJ",   color: "#333333", desc: "The judge doesn't have test input and outputs for the selected problem.", style: 'background-color: #333333; animation: flashing_cj 0.3s ease-in-out 0s 1'}, // OT
       20: { name: "- In queue -",         short_name: "QU",   color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'background-color: #000000'}, // OT
       30: { name: "Compile error",        short_name: "CE",   color: "#AAAA00", desc: "The compiler could not compile your program.", style: 'background-color: #AAAA00; animation: flashing_ce 0.3s ease-in-out 0s 1'},
       35: { name: "Restricted function",  short_name: "RF",   color: "#660000", desc: "Your program is trying to use a function that we considered harmful to the system.", style: 'background-color: #660000; animation: flashing_rf 0.3s ease-in-out 0s 1'}, // OT
