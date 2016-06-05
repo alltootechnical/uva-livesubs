@@ -1,34 +1,40 @@
 <div ng-init="problem_width=185; username_width=185; runs_threshold=5">
   <title ng-if="pending_runs() > 0">({{pending_runs()}}) Live Submissions from UVa Online Judge</title>
   <title ng-if="pending_runs() == 0">Live Submissions from UVa Online Judge</title>
+  <script ng-if="live_submissions[0].ver == 0">try{notifyNew(livesubs[0])}catch(ex){}</script>
+  <script ng-if="live_submissions[0].ver != 0">try{notifyMe(livesubs[0])}catch(ex){}</script>
+  <script ng-if="pending_runs() == 0">closeAll()</script>
+  <script ng-if="pending_runs() > runs_threshold">if(typeof pending_runs != 'undefined') notifyWarning("Don't submit for now")</script>
   <table width="100%" style="display:none; border-collapse:collapse;" cellpadding="1" ng-show="show">
     <thead>
       <tr class="tablebar" height="25">
       <th align="left" colspan="10" height="25" style="vertical-align:bottom">
       <span ng-controller='TimeCtrl' class="boxes" style="background:#0A3C7E;float:right; ">
-        {{clock|date:'HH:mm:ss'}}
+        {{clock|date:'HH:mm:ss'}}<span style="font-stretch: condensed">{{clock|date:'.sss'}}</span>
         </span>
         <span class="boxes" style="float:right; font-weight:normal; font-stretch:normal; color:white; padding-right:10px">Show&nbsp;
           <a class="opts" ng-click="set_limit(5)"> 5 </a> &middot;
           <a class="opts" ng-click="set_limit(10)"> 10 </a> &middot;
-	  <a class="opts" ng-click="set_limit(15)"> 15 </a> &middot;
+	      <a class="opts" ng-click="set_limit(15)"> 15 </a> &middot;
           <a class="opts" ng-click="set_limit(20)"> 20 </a> &middot;
           <a class="opts" ng-click="set_limit(25)"> 25 </a> &middot;
-	  <a class="opts" ng-click="set_limit(30)"> 30 </a> &middot;
-	  <a class="opts" ng-click="set_limit(35)"> 35 </a> &middot;
-	  <a class="opts" ng-click="set_limit(40)"> 40 </a> &middot;
-	  <a class="opts" ng-click="set_limit(45)"> 45 </a> &middot;
+	      <a class="opts" ng-click="set_limit(30)"> 30 </a> &middot;
+	      <a class="opts" ng-click="set_limit(35)"> 35 </a> &middot;
+	      <a class="opts" ng-click="set_limit(40)"> 40 </a> &middot;
+	      <a class="opts" ng-click="set_limit(45)"> 45 </a> &middot;
           <a class="opts" ng-click="set_limit(50)"> 50 </a> &middot;
           <a class="opts" ng-click="set_limit(100)"> 100 </a> &middot;
           <a class="opts" ng-click="set_limit(250)"> 250 </a> &middot;
           <a class="opts" ng-click="set_limit(500)"> 500 </a> &middot;
           <a class="opts" ng-click="set_limit(1000)"> 1000 </a>
         </span>
-        
-        &nbsp; <span class="white" style="font-stretch:normal"><b>Live Submissions from UVa Online Judge</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp; <span class="white" style="font-stretch:normal"><b>Live Submissions from UVa Online Judge</b></span>&nbsp;&nbsp;&nbsp;
+        <span class="boxes" style="color:red; font-weight:normal; border: 1px solid red" ng-if="Notification.permission !== 'granted'">Notifications disabled</span>
+        <span class="boxes" style="color:lime; font-weight:normal; border: 1px solid lime" ng-if="Notification.permission === 'granted'">Notifications enabled</span>
+        &nbsp;&nbsp;&nbsp;
         <span class="boxes" style="color:yellow; font-weight:normal; border: 1px solid yellow" ng-if="pending_runs() == 1">{{pending_runs()}} Pending Run</span>
         <span class="boxes" style="color:yellow; font-weight:normal; border: 1px solid yellow" ng-if="pending_runs() > 1">{{pending_runs()}} Pending Runs</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
         <span class="boxes" style="color:red; border: 1px solid red" ng-if="runs_threshold <= pending_runs() && pending_runs() < 2*runs_threshold">Verdicts possibly delayed; please stand by</span>
         <span class="boxes" style="color:red; border: 1px solid red" ng-if="pending_runs() >= 2*runs_threshold">Verdicts are delayed; don't resubmit</span>
          <!-- <a class="white" style="cursor:pointer" ng-click="set_show(false)">(hide)</a> -->

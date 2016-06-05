@@ -91,7 +91,7 @@ td.waiting {
 .boxes {
     font-weight:normal; 
     display:inline; 
-    padding:2px 15px
+    padding:2px 8px
 }
 
 @keyframes flashing {
