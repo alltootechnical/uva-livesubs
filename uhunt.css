@@ -85,7 +85,7 @@ p  { font-family: open sans; font-size: 23px; }
 }
 
 td.waiting {
-    background: -webkit-linear-gradient(left, orange, orange 49.7%, black 50%, black 100%); background: -moz-linear-gradient(left, orange, orange 49.7%, black 50%, black 100%); background-size: 600% 600%; animation: loading 3s ease-in infinite;/* background-attachment:fixed;*/
+    background: -webkit-linear-gradient(left, orange, orange 49.7%, black 50%, black 100%); background: -moz-linear-gradient(left, orange, orange 49.7%, black 50%, black 100%); background-size: 600% 600%; animation: loading 3s cubic-bezier(0,-0.36,0,.98) infinite;/* background-attachment:fixed;*/
 }
 
 .boxes {
