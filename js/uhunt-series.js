@@ -213,8 +213,8 @@ angular.module('uHunt.series', ['uHunt.base'])
             row += "<td align=center "+bold+">-";
           }
         }
-        arr.push([nac, pen, '<td>&nbsp;<a class="ellipsis" style="width:145px" uid="'+ uid +'" target="_blank" href="/id/' + 
-            uid + '">' + u.name() + ' (' + u.uname() + ')</a><td align=right style="padding-right:10px" nowrap ' + 
+        arr.push([nac, pen, '<td>&nbsp;<a class="ellipsis" style="width:145px" uid="'+ uid +'" target="_blank" href="/id/' +
+            uid + '">' + u.name() + ' (' + u.uname() + ')</a><td align=right style="padding-right:10px" nowrap ' +
             bold +'><b>' + nac + '</b> / ' + format_dhms(pen, true) + row]);
       }
       arr.sort(ac_pen_cmp);

@@ -8,7 +8,7 @@ Author: Felix Halim <felix.halim@gmail.com>
 
 /*global $, io, alert, MD5, window, document, localStorage */
 
-angular.module('uHunt.base', [])
+angular.module('uHunt.base', ['picardy.fontawesome'])
 
 // Helper functions.
 .factory('uhunt_util', function ($http, $timeout, $filter) {
@@ -122,20 +122,21 @@ s(d)).toLowerCase()},
       }
       return 'prob sub_none';
     },
+    //<span class="ng-class:{'fa fa-check': s.ver==90, 'fa fa-times': s.ver==70, 'fa fa-exclamation-triangle': s.ver==40, 'fa fa-clock-o': s.ver==50, 'fa fa-exclamation-circle': s.ver==30}"></span>
     'verdict_map' : {
-       0: { name: "- In queue -",         short_name: "",     color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'animation: flashing 0.3s ease-in-out 0s infinite alternate'}, // OT
-      10: { name: "Submission error",     short_name: "SE",   color: "#660066", desc: "The submission is not successful.", style: 'background-color: #660066; animation: flashing_se 0.3s ease-in-out 0s 1'}, // OT
-      15: { name: "Can't be judged",      short_name: "CJ",   color: "#333333", desc: "The judge doesn't have test input and outputs for the selected problem.", style: 'background-color: #333333; animation: flashing_cj 0.3s ease-in-out 0s 1'}, // OT
-      20: { name: "- In queue -",         short_name: "QU",   color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'background-color: #000000'}, // OT
-      30: { name: "Compile error",        short_name: "CE",   color: "#AAAA00", desc: "The compiler could not compile your program.", style: 'background-color: #AAAA00; animation: flashing_ce 0.3s ease-in-out 0s 1'},
-      35: { name: "Restricted function",  short_name: "RF",   color: "#660000", desc: "Your program is trying to use a function that we considered harmful to the system.", style: 'background-color: #660000; animation: flashing_rf 0.3s ease-in-out 0s 1'}, // OT
-      40: { name: "Runtime error",        short_name: "RE",   color: "#00AAAA", desc: "Your program failed during execution.", style: 'background-color: #00AAAA; animation: flashing_re 0.3s ease-in-out 0s 1'},
-      45: { name: "Output limit exceeded",short_name: "OL",   color: "#000066", desc: "Your program tried to write too much information.", style: 'background-color: #000066; animation: flashing_ol 0.3s ease-in-out 0s 1'},
-      50: { name: "Time limit exceeded",  short_name: "TLE",  color: "#0000FF", desc: "Your program tried to run during too much time.", style: 'background-color: #0000FF; animation: flashing_tle 0.3s ease-in-out 0s 1'},
-      60: { name: "Memory limit exceeded",short_name: "MLE",  color: "#0000AA", desc: "Your program tried to use more memory than the judge allows.", style: 'background-color: #0000AA; animation: flashing_mle 0.3s ease-in-out 0s 1'},
-      70: { name: "Wrong answer",         short_name: "WA",   color: "#FF0000", desc: "Correct solution not reached for the inputs.", style: 'background-color: #FF0000; animation: flashing_wa 0.3s ease-in-out 0s 1'},
-      80: { name: "Presentation error",   short_name: "PE",   color: "#666600", desc: "Your program outputs are correct but are not presented in the correct way. Check for spaces, justify, line feeds...", style: 'background-color: #666600; animation: flashing_pe 0.3s ease-in-out 0s 1'},
-      90: { name: "Accepted",             short_name: "AC",   color: "#00AA00", desc: "OK! Your program is correct!", style: 'background-color: #00AA00; animation: flashing_ac 0.3s ease-in-out 0s 1'},
+       0: { name: "- In queue -",         short_name: "", icon: "spinner",   color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'animation: flashing 0.3s ease-in-out 0s infinite alternate'}, // OT
+      10: { name: "Submission error",     short_name: "SE", icon: "",  color: "#660066", desc: "The submission is not successful.", style: 'background-color: #660066; animation: flashing_se 0.3s ease-in-out 0s 1'}, // OT
+      15: { name: "Can't be judged",      short_name: "CJ", icon: "",  color: "#333333", desc: "The judge doesn't have test input and outputs for the selected problem.", style: 'background-color: #333333; animation: flashing_cj 0.3s ease-in-out 0s 1'}, // OT
+      20: { name: "- In queue -",         short_name: "QU", icon: "",  color: "#000000", desc: "The judge is busy and can't attend your submission. It will be judged as soon as possible.", style: 'background-color: #000000'}, // OT
+      30: { name: "Compile error",        short_name: "CE", icon: "exclamation-circle",  color: "#AAAA00", desc: "The compiler could not compile your program.", style: 'background-color: #AAAA00; animation: flashing_ce 0.3s ease-in-out 0s 1'},
+      35: { name: "Restricted function",  short_name: "RF", icon: "",  color: "#660000", desc: "Your program is trying to use a function that we considered harmful to the system.", style: 'background-color: #660000; animation: flashing_rf 0.3s ease-in-out 0s 1'}, // OT
+      40: { name: "Runtime error",        short_name: "RTE", icon: "exclamation-triangle",  color: "#00AAAA", desc: "Your program failed during execution.", style: 'background-color: #00AAAA; animation: flashing_re 0.3s ease-in-out 0s 1'},
+      45: { name: "Output limit exceeded",short_name: "OLE", icon: "",  color: "#000066", desc: "Your program tried to write too much information.", style: 'background-color: #000066; animation: flashing_ol 0.3s ease-in-out 0s 1'},
+      50: { name: "Time limit exceeded",  short_name: "TLE", icon: "clock-o", color: "#0000FF", desc: "Your program tried to run during too much time.", style: 'background-color: #0000FF; animation: flashing_tle 0.3s ease-in-out 0s 1'},
+      60: { name: "Memory limit exceeded",short_name: "MLE", icon: "", color: "#0000AA", desc: "Your program tried to use more memory than the judge allows.", style: 'background-color: #0000AA; animation: flashing_mle 0.3s ease-in-out 0s 1'},
+      70: { name: "Wrong answer",         short_name: "WA", icon: "times",  color: "#FF0000", desc: "Correct solution not reached for the inputs.", style: 'background-color: #FF0000; animation: flashing_wa 0.3s ease-in-out 0s 1'},
+      80: { name: "Presentation error",   short_name: "PE", icon: "",  color: "#666600", desc: "Your program outputs are correct but are not presented in the correct way. Check for spaces, justify, line feeds...", style: 'background-color: #666600; animation: flashing_pe 0.3s ease-in-out 0s 1'},
+      90: { name: "Accepted",             short_name: "AC", icon: "check",  color: "#00AA00", desc: "OK! Your program is correct!", style: 'background-color: #00AA00; animation: flashing_ac 0.3s ease-in-out 0s 1'},
     },
     'language_map': {
       1: { name: 'ANSI C',  color: 'darkorange' },
@@ -617,7 +618,16 @@ s(d)).toLowerCase()},
 
 .directive('uhuntVerdict', function (uhunt) {
   return {
-    template: '<span style="color:#ffffff"><abbr title="{{ver.name}}: {{ver.desc}}">{{ver.short_name}}</abbr></span>',
+    //template: '<span style="color:#ffffff"><abbr title="{{ver.name}}: {{ver.desc}}">{{ver.short_name}}</abbr></span>',
+    link: function (scope, element, attrs) {
+      scope.ver = uhunt.verdict_map[attrs.uhuntVerdict];
+    }
+  };
+})
+
+.directive('uhuntVerdictIcon', function (uhunt) {
+  return {
+    template: '<fa name="{{ver.icon}}" style="color:#ffffff"></fa>',
     link: function (scope, element, attrs) {
       scope.ver = uhunt.verdict_map[attrs.uhuntVerdict];
     }

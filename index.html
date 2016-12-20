@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="uhunt.css"/>
+  <link rel="stylesheet" href="font-awesome.css"/>
+  <!--<link rel="stylesheet" href="http://www.onextrapixel.com/examples/jquery-super-simple-text-rotator/css/simpletextrotator.css"/>-->
   <link rel="shortcut icon" href="http://i.imgur.com/UaJV0iL.png" />
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <script src="http://www.onextrapixel.com/examples/jquery-super-simple-text-rotator/js/jquery.simple-text-rotator.js"></script>
   <script src="js/angular.js"></script>
+  <script src="js/angular-fontawesome.js"></script>
   <script src="js/uhunt-base.js"></script>
   <script src="js/uhunt-livesubs.js"></script>
   <script>
   angular.module('uHunt', [
     'uHunt.base',
     'uHunt.livesubs',
+    'picardy.fontawesome'
   ])
 
   .factory('uhunt', function (uhunt_config) {
@@ -44,6 +49,7 @@
         <td class="short" style="background: #333333">CJ</td><td class="desc">Can't be judged</td>
     </tr>
   </table>
+  
 </body>
 </html>
 	

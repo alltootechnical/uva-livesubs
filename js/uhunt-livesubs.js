@@ -15,7 +15,30 @@ var ver_map = {
       70: "Wrong answer",
       80: "Presentation error",
       90: "Accepted",
-    }
+    };
+var icon_map = {
+       0: "",
+      10: "",
+      15: "",
+      20: "",
+      30: "exclamation-circle",
+      35: "ban",
+      40: "exclamation-triangle",
+      45: "",
+      50: "clock-o",
+      60: "microchip",
+      70: "times",
+      80: "pencil-square-o",
+      90: "check",
+    };
+var language_map = {
+      1: 'ANSI C',
+      2: 'Java',  
+      3: 'C++',   
+      4: 'Pascal',
+      5: 'C++11', 
+      6: 'Python'
+    };
 
 angular.module('uHunt.livesubs', ['uHunt.base'])
 
@@ -39,6 +62,7 @@ angular.module('uHunt.livesubs', ['uHunt.base'])
       scope.live_submissions = uhunt_poll.live_submissions;
       livesubs = scope.live_submissions;
       scope.livesub_url = uhunt.livesub_url;
+      scope.icons = icon_map;
       scope.pending_runs = function () {
           var count = 0;
           for (var i = 0; i < scope.limit; i++) {
@@ -50,9 +74,10 @@ angular.module('uHunt.livesubs', ['uHunt.base'])
                   if(inqueue.length > 0) console.log(inqueue);
               } catch(ex) {}
           }
+          //flip();
           return count;
       };
-      
+      //flip();
     }
   }
 })
@@ -63,7 +88,9 @@ function TimeCtrl($scope, $timeout) {
     var tick = function() {
         $scope.clock = Date.now()
         $timeout(tick, $scope.tickInterval);
+        //flip();
     }
+
     $timeout(tick, $scope.tickInterval);
 }
 
@@ -84,7 +111,7 @@ function notifyNew(lst) {
   if (Notification.permission !== "granted")
     Notification.requestPermission();
   else {
-    var notification = new Notification('New Run', {
+    var notification = new Notification('New run', {
       icon: 'https://cdn2.iconfinder.com/data/icons/office-icon-set-3/512/hours.png',
       body: lst.name + " (" + lst.uname + ")\n" + lst.p.num + ": " + lst.p.tit
     });
@@ -108,10 +135,12 @@ function notifyMe(lst) {
   else {
     var notification = new Notification(ver_map[lst.ver], {
       icon: 'imgs/vr_'+ lst.ver + ".png",
-      body: lst.name + " (" + lst.uname + ")\n" + lst.p.num + ": " + lst.p.tit,
+      body: lst.name + " (" + lst.uname + ")\n" + lst.p.num + ": " + lst.p.tit + "\nRun in " + (lst.run/1000).toFixed(3) + "s using " + language_map[lst.lan],
     });
     //notifications.push(notification);
+    setTimeout(function() { notification.close() }, 5000);
     notification.onclick = function () {
+      notification.close();
       //window.open("http://stackoverflow.com/a/13328397/1269037");      
     };
     
@@ -151,6 +180,14 @@ function close(){
     notifications[0].close();
     notifications.pop();
   }
+}
+
+function flip(k) {
+  $(".rot").eq(k).textrotator({
+        animation: "flipUp",
+        separator: "\\",
+    speed: 2000
+    });
 }
 
 ;

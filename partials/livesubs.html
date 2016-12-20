@@ -1,10 +1,11 @@
 <div ng-init="problem_width=185; username_width=185; runs_threshold=5">
   <title ng-if="pending_runs() > 0">({{pending_runs()}}) Live Submissions from UVa Online Judge</title>
   <title ng-if="pending_runs() == 0">Live Submissions from UVa Online Judge</title>
-  <script ng-if="live_submissions[0].ver == 0">try{notifyNew(livesubs[0])}catch(ex){}</script>
+  <!--<script ng-if="live_submissions[0].ver == 0">try{notifyNew(livesubs[0])}catch(ex){}</script>-->
+  <!--<script ng-if="live_submissions[0].ver == 0">flip(0);</script>-->
   <script ng-if="live_submissions[0].ver != 0">try{notifyMe(livesubs[0])}catch(ex){}</script>
   <script ng-if="pending_runs() == 0">closeAll()</script>
-  <script ng-if="pending_runs() > runs_threshold">if(typeof pending_runs != 'undefined') notifyWarning("Don't submit for now")</script>
+  <script ng-if="pending_runs() >= runs_threshold">if(typeof pending_runs != 'undefined') notifyWarning("Don't submit for now")</script>
   <table width="100%" style="display:none; border-collapse:collapse;" cellpadding="1" ng-show="show">
     <thead>
       <tr class="tablebar" height="25">
@@ -54,22 +55,24 @@
       </tr>
     </thead>
     <tbody style="font-size:11px">
-      <tr style="height:18px; {{ver.style}}; color:white; border-top: 5px solid; border-bottom: 5px solid; border-color: black;" ng-repeat="s in live_submissions | limitTo:limit">
+      <tr style="height:18px; {{ver.style}}; color:white; border-top: 5px solid; border-bottom: 5px solid; border-color: black;" ng-repeat="s in live_submissions | limitTo:limit"> <!-- ng-show="[195293,192126,187790,240019,188114,145723,190064,188550,191004,194646,774905,268802,265163,582338,268644,295447,795918,795938,268819,69884].indexOf(s.uid) != -1" --> 
         <td style="font-stretch:condensed;">&nbsp;{{s.sid}}</td>
         <td class="updown"><span class="up">Level&nbsp;{{10-Math.floor(Math.min(10, Math.log(s.p.dacu)))}}</span><br/> {{s.p.dacu}}&nbsp;dacu</td>
+        <!--<td class="rot">Level&nbsp;{{10-Math.floor(Math.min(10, Math.log(s.p.dacu)))}}\{{s.p.dacu}} dacu</td>-->
         <td align="right" uhunt-problem="{{s.pid}}"></td>
         <td>
          <!--  <span style="float:right; padding-right:5px" uhunt-discuss="{{s.p.num}}"></span> -->
           <span uhunt-problem-title="{{s.pid}}" width="{{problem_width}}"></span>
         </td>
         <td width="{{username_width}}" uhunt-name-uname name="{{s.name}}" uname="{{s.uname}}" uid="{{s.uid}}"></td>
-        <td class="ng-class: {waiting: s.ver==0, ver.style: s.ver!=0}" align="center" uhunt-verdict="{{s.ver}}"></td>
+        <!--<td class="ng-class: {waiting: s.ver==0, ver.style: s.ver!=0}" align="center" uhunt-verdict="{{s.ver}}"></td>-->
+        <td class="ng-class: {waiting: s.ver==0, ver.style: s.ver!=0}" align="center" uhunt-verdict="{{s.ver}}"><fa ng-show="s.ver==0" name="circle-o-notch" spin></fa><fa name="{{icons[s.ver]}}"></fa></td>
         <td align="center" uhunt-language="{{s.lan}}"></td>
         <td align="center" uhunt-runtime="{{s.run}}"></td>
         <!-- <td align="center" uhunt-best-runtime="{{s.pid}}"></td> -->
         <td align="center" uhunt-rank="{{s.rank}}"></td>
         <td align="center">{{(s.sbt | uhunt_format_ago).substring(0,(s.sbt | uhunt_format_ago).indexOf(" "))}}
-        <span style="font-stretch:condensed;">{{(s.sbt | uhunt_format_ago).substring((s.sbt | uhunt_format_ago).indexOf(" ")+1,(s.sbt | uhunt_format_ago).length)}}</span>
+        <span style="font-stretch:condensed;">{{(s.sbt | uhunt_format_ago).substring((s.sbt | uhunt_format_ago).indexOf(" ")+1,(s.sbt | uhunt_format_ago).length)}}</span></td>
       </tr>
     </tbody>
   </table>
